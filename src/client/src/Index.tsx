@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import App from "./features/App";
+import { createStore } from "./Store";
 
 interface User {
   name: string;
 }
 
-interface InitialState {
+export interface InitialState {
   user: User;
 }
 
@@ -14,7 +16,14 @@ declare var window: { initialState: InitialState };
 
 const initialState = window.initialState;
 
-ReactDOM.render(<App {...initialState} />, document.getElementById("root"));
+const store = createStore(initialState);
+
+ReactDOM.render(
+  <Provider store={store as any}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 declare var module: any;
 // Hot Module Replacement

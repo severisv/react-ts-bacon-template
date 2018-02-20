@@ -21,7 +21,7 @@ namespace Server.Controllers
             {
                 User = new
                 {
-                    Name = User.Identity.Name
+                    Name = "Frank"
                 }
             }.ToJson();
 
@@ -30,5 +30,13 @@ namespace Server.Controllers
             return Content(result, "text/html");
 
         }
+
+
+        [Route("api/value")]
+        public object Value() => new { value = "Frank" };
+
+        [HttpPost]
+        [Route("api/value")]
+        public object PostValue() => new { success = new Random().Next(2) };
     }
 }

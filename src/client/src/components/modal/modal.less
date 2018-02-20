@@ -1,0 +1,74 @@
+@modal-z-index: 1000;
+@black: gray;
+@red-danger: pink;
+@light-grey: lightgrey;
+@white: lightblue;
+
+.modal {
+  z-index: @modal-z-index;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Reset styles fordi modaler kan være inne i tabeller, list osv
+  font-size: 15px;
+  line-height: 1;
+  font-weight: normal;
+  font-style: normal;
+}
+.wrapper {
+  z-index: @modal-z-index;
+  box-shadow: 0px 0px 5px 0px fade(@black, 50);
+  background-color: @white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 750px;
+
+  &--delete {
+    box-shadow: 0px 0px 0px 5px fade(@red-danger, 80);
+  }
+
+  @keyframes modal-enter {
+    0% {
+      transform: translate(0, 20%);
+      opacity: 0;
+    }
+    40% {
+      transform: translate(0, 20%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0, 0%);
+      opacity: 1;
+    }
+  }
+
+  animation: modal-enter 0.2s ease-in-out forwards;
+}
+
+.window {
+  padding: 1.5em;
+  min-height: 10em;
+  max-height: 70vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay {
+  z-index: @modal-z-index;
+  display: block;
+  background-color: @light-grey;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  left: 0;
+  width: 150%;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+}
