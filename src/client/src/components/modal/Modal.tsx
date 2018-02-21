@@ -5,7 +5,7 @@ import { combine, Reducer } from "utils/repatch";
 import styles from "./modal.less";
 
 export const modalKey = "modal";
-const reduce = (reducer: Reducer<State>) => combine<State>(modalKey, reducer);
+const update = (reducer: Reducer<State>) => combine<State>(modalKey, reducer);
 
 interface State {
   isVisible: boolean;
@@ -15,8 +15,8 @@ export const initialModalState: State = {
   isVisible: false
 };
 
-export const closeModal = () => reduce(state => ({ isVisible: false }));
-export const openModal = () => reduce(state => ({ isVisible: true }));
+export const closeModal = () => update(state => ({ isVisible: false }));
+export const openModal = () => update(state => ({ isVisible: true }));
 
 export default connect(
   (state: Store) => ({

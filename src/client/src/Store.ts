@@ -1,6 +1,13 @@
 import { initialModalState, modalKey } from "components/modal/Modal";
 import RepatchStore from "repatch";
-import { InitialState } from "./Index";
+
+interface User {
+  name: string;
+}
+
+export interface InitialState {
+  user: User;
+}
 
 export interface Store extends InitialState {
   [modalKey]: typeof initialModalState;

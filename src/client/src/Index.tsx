@@ -1,16 +1,9 @@
+import "normalize.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./features/App";
-import { createStore } from "./Store";
-
-interface User {
-  name: string;
-}
-
-export interface InitialState {
-  user: User;
-}
+import { createStore, InitialState } from "./Store";
 
 declare var window: { initialState: InitialState };
 

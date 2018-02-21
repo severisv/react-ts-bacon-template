@@ -1,18 +1,8 @@
 import Modal, { closeModal, openModal } from "components/modal/Modal";
-import React, { Component, SFC } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
-import { get, post } from "utils/api";
-
-const setValue = (value: string) => (state: State) => ({
-  ...state,
-  value
-});
-
-const setValidationError = (error: string) => (state: State) => ({
-  ...state,
-  error
-});
+import { getValue, postValue } from "./endpoints";
 
 interface State {
   value: string;
@@ -24,21 +14,26 @@ const initialState: State = {
   error: ""
 };
 
+const setValue = (value: string) => (state: State): State => ({
+  ...state,
+  value
+});
+
+const setValidationError = (error: string) => (state: State): State => ({
+  ...state,
+  error
+});
+
 interface Props extends RouteComponentProps<{}> {
   openModal: typeof openModal;
   closeModal: typeof closeModal;
 }
 
 class Hello extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = initialState;
-  }
+  state = initialState;
 
   componentDidMount() {
-    get<{ value: string }>("/api/value").then(({ value }) =>
-      this.setState(setValue(value))
-    );
+    getValue().then(({ value }) => this.setState(setValue(value)));
   }
 
   setValue = (e: any) => this.setState(setValue(e.target.value));
@@ -47,9 +42,7 @@ class Hello extends Component<Props, State> {
     this.setState(setValidationError(error));
 
   submit = () =>
-    post<{ success: boolean }>("/api/value", {
-      value: this.state.value
-    }).then(result => {
+    postValue(this.state.value).then(result => {
       if (result.success) {
         this.props.closeModal();
         this.props.history.push("/");

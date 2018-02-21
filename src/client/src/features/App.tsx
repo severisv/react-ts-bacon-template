@@ -1,16 +1,16 @@
-import Modal from "components/modal/Modal";
+import Layout from "features/common/Layout";
 import Hello from "features/hello/Hello";
 import Home from "features/home/Home";
-import React, { SFC } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Store } from "Store";
 import styles from "./app.less";
 
-export default connect((state: Store) => ({ state, user: state.user }))(
-  ({ user, state }) => (
-    <div className={styles.app}>
+export default connect((state: Store) => ({ user: state.user }))(({ user }) => (
+  <div className={styles.app}>
+    <Layout>
       Hei {user.name}!
       <Router>
         <Switch>
@@ -19,6 +19,6 @@ export default connect((state: Store) => ({ state, user: state.user }))(
           <Route render={() => <h3>"404"</h3>} />
         </Switch>
       </Router>
-    </div>
-  )
-);
+    </Layout>
+  </div>
+));

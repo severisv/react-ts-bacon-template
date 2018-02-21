@@ -12,6 +12,8 @@
     "skipLibCheck": true,
     "noEmitHelpers": true,
     "importHelpers": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "baseUrl": ".",
     "paths": {
       "*": ["src/*", "static/*"]
