@@ -4,15 +4,17 @@ import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
 import { getValue, postValue } from "./endpoints";
 
-interface State {
-  value: string;
-  error: string;
-}
-
-const initialState: State = {
+const initialState = {
   value: "",
   error: ""
 };
+
+type State = typeof initialState;
+
+interface Props extends RouteComponentProps<{}> {
+  openModal: typeof openModal;
+  closeModal: typeof closeModal;
+}
 
 const setValue = (value: string) => (state: State): State => ({
   ...state,
@@ -24,11 +26,6 @@ const setValidationError = (error: string) => (state: State): State => ({
   error
 });
 
-interface Props extends RouteComponentProps<{}> {
-  openModal: typeof openModal;
-  closeModal: typeof closeModal;
-}
-
 class Hello extends Component<Props, State> {
   state = initialState;
 
@@ -36,20 +33,17 @@ class Hello extends Component<Props, State> {
     getValue().then(({ value }) => this.setState(setValue(value)));
   }
 
-  setValue = (e: any) => this.setState(setValue(e.target.value));
-
-  setValidationError = (error: string) =>
-    this.setState(setValidationError(error));
-
-  submit = () =>
-    postValue(this.state.value).then(result => {
+  submit = () => {
+    const { props, state } = this;
+    postValue(state.value).then(result => {
       if (result.success) {
-        this.props.closeModal();
-        this.props.history.push("/");
+        props.closeModal();
+        props.history.push("/");
       } else {
-        this.setValidationError("It didn't work");
+        this.setState(setValidationError("It didn't work"));
       }
     });
+  };
 
   render() {
     const { props, state } = this;
@@ -59,7 +53,11 @@ class Hello extends Component<Props, State> {
         <button onClick={props.openModal}>Åpne skjema</button>
         <Modal>
           <div>
-            <input onChange={this.setValue} type="text" value={state.value} />
+            <input
+              onChange={e => this.setState(setValue(e.target.value))}
+              type="text"
+              value={state.value}
+            />
             <span style={{ color: "red" }}>{state.error}</span>
             <button onClick={this.submit}>send</button>
           </div>

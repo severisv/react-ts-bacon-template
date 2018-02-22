@@ -37,6 +37,6 @@ namespace Server.Controllers
 
         [HttpPost]
         [Route("api/value")]
-        public object PostValue() => new { success = new Random().Next(2) };
+        public object PostValue() => new { success = new Random().Next(4) == 0 };
     }
 }
