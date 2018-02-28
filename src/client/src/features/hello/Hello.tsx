@@ -1,4 +1,4 @@
-import Modal, { closeModal, openModal } from "components/modal/Modal";
+import { Modal, modalClose, modalOpen } from "components";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
@@ -12,8 +12,8 @@ const initialState = {
 type State = typeof initialState;
 
 interface Props extends RouteComponentProps<{}> {
-  openModal: typeof openModal;
-  closeModal: typeof closeModal;
+  modalOpen: typeof modalOpen;
+  modalClose: typeof modalClose;
 }
 
 const setValue = (value: string) => (state: State): State => ({
@@ -37,7 +37,7 @@ class Hello extends Component<Props, State> {
     const { props, state } = this;
     postValue(state.value).then(result => {
       if (result.success) {
-        props.closeModal();
+        props.modalClose();
         props.history.push("/");
       } else {
         this.setState(setValidationError("It didn't work"));
@@ -50,7 +50,7 @@ class Hello extends Component<Props, State> {
     return (
       <div>
         <p>Hello</p>
-        <button onClick={props.openModal}>Åpne skjema</button>
+        <button onClick={props.modalClose}>Åpne skjema</button>
         <Modal>
           <div>
             <input
@@ -69,7 +69,7 @@ class Hello extends Component<Props, State> {
 
 export default withRouter(
   connect(undefined, {
-    openModal,
-    closeModal
+    modalOpen,
+    modalClose
   })(Hello)
 );

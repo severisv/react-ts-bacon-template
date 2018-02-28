@@ -89,6 +89,5 @@ module Targets =
 
 "Clean-dist"
 ==> "Publish"
-==> "Default"
 
-RunTargetOrDefault "Default"
+RunTargetOrDefault "Publish"

@@ -15,14 +15,14 @@ export const initialModalState: State = {
   isVisible: false
 };
 
-export const closeModal = () => update(_ => ({ isVisible: false }));
-export const openModal = () => update(_ => ({ isVisible: true }));
+export const modalClose = () => update(_ => ({ isVisible: false }));
+export const modalOpen = () => update(_ => ({ isVisible: true }));
 
-export default connect(
+export const Modal = connect(
   (state: Store) => ({
     ...state[modalKey]
   }),
-  { close: closeModal }
+  { close: modalClose }
 )(
   props =>
     props.isVisible ? (
