@@ -29,6 +29,14 @@ module Targets =
                                             Configuration = "Release"
                                             Project = project 
                                           }) )
+      )
+
+  Target "Test-backend" (fun () ->     
+      !! "tests/**/*.csproj" |> Seq.iter (fun project -> 
+                                    DotNetCli.Test 
+                                      (fun o ->  { o with  
+                                                    Project = project 
+                                                  }) )
   )
 
 

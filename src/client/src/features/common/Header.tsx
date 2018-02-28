@@ -3,7 +3,7 @@ import styles from "./header.less";
 
 const Header: SFC = () => (
   <div className={styles.header}>
-    <h2>Skolestudio</h2>
+    <h2>Header</h2>
   </div>
 );
 
