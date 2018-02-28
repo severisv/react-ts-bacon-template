@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build":
-      "parcel build ./src/index.html -d ../server/wwwroot/dist --public-url /dist",
-    "watch":
-      "parcel watch ./src/index.html -d ../server/wwwroot/dist --public-url /dist",
+    "build": "parcel build ./src/index.html -d ../server/wwwroot/dist --public-url /dist",
+    "watch": "parcel watch ./src/index.html -d ../server/wwwroot/dist --public-url /dist",
     "test": "jest",
     "watch-test": "jest --watchAll",
     "format": "prettier --write **\\*.{ts,tsx}",
@@ -30,7 +28,7 @@
     "jest-css-modules": "^1.1.0",
     "less": "^3.0.0",
     "parcel-bundler": "^1.5.1",
-    "parcel-plugin-typescript": "^0.6.0",
+    "parcel-plugin-typescript": "0.6.1-next.2",
     "postcss-modules": "^1.1.0",
     "prettier": "^1.10.2",
     "ts-jest": "^22.0.4",
@@ -57,9 +55,21 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testMatch": ["**/*.test.(ts|tsx)"],
-    "moduleDirectories": ["node_modules", "."],
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+    "testMatch": [
+      "**/*.test.(ts|tsx)"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "."
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "globals": {
       "ts-jest": {
         "useBabelrc": true

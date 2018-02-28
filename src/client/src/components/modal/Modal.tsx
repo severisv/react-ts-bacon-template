@@ -15,8 +15,8 @@ export const initialModalState: State = {
   isVisible: false
 };
 
-export const closeModal = () => update(state => ({ isVisible: false }));
-export const openModal = () => update(state => ({ isVisible: true }));
+export const closeModal = () => update(_ => ({ isVisible: false }));
+export const openModal = () => update(_ => ({ isVisible: true }));
 
 export default connect(
   (state: Store) => ({
