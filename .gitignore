@@ -62,5 +62,5 @@ typings/
 bin
 obj
 dist
-**/nuget/packages
 .fake
+tools/packages

@@ -1,3 +1,3 @@
-if not EXIST "build\nuget\packages\FAKE\tools\Fake.exe" build\nuget\NuGet.exe "Install" "FAKE" "-OutputDirectory" "build\nuget\packages" "-ExcludeVersion"
+if not EXIST "tools\packages\FAKE\tools\Fake.exe" tools\NuGet.exe "Install" "FAKE" "-OutputDirectory" "tools\packages" "-ExcludeVersion"
 
-"build\nuget\packages\FAKE\tools\Fake.exe" build\Build.fsx %*
+"tools\packages\FAKE\tools\Fake.exe" Build.fsx %*
