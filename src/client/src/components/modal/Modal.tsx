@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Store } from "Store";
 import { combine, Reducer } from "utils/repatch";

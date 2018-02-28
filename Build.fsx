@@ -40,6 +40,9 @@ module Targets =
   let clientDirectory = "src/client"
   let npm command = Npm (fun p -> { p with Command = command; WorkingDirectory = clientDirectory})
 
+  Target "Lint-frontend" (fun () ->     
+      npm (Run "lint")
+  )
 
   Target "Restore-frontend" (fun () ->   
       npm (Install Standard)   
@@ -50,10 +53,6 @@ module Targets =
   )
 
   Target "Test-frontend" (fun () ->     
-      npm (Run "test")
-  )
-
-  Target "Lint-frontend" (fun () ->     
       npm (Run "test")
   )
 
@@ -68,11 +67,11 @@ module Targets =
 
   Target "Default" ignore
 
-"Clean-frontend"
+"Lint-frontend"
+==> "Clean-frontend"
 ==> "Restore-frontend"
 ==> "Build-frontend"
 ==> "Test-frontend"
-==> "Lint-frontend"
 ==> "Publish"
 
 "Clean-backend"

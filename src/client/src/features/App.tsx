@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Store } from "Store";
 import styles from "./app.less";
 
-export default connect((state: Store) => ({ user: state.user }))(({ user }) => (
+export default connect((state: Store) => ({ user: state.user }))(_ => (
   <div className={styles.app}>
     <Layout>
       <Router>
