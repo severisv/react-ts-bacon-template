@@ -75,9 +75,9 @@ module Targets =
 
   Target "Default" ignore
 
-"Lint-frontend"
-==> "Clean-frontend"
+"Clean-frontend"
 ==> "Restore-frontend"
+==> "Lint-frontend"
 ==> "Build-frontend"
 ==> "Test-frontend"
 ==> "Publish"
