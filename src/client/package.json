@@ -10,13 +10,21 @@
     "test": "jest",
     "watch-test": "jest --watchAll",
     "format": "prettier --write **\\*.{ts,tsx}",
-    "lint": "tslint --project ./ && prettier -l **\\*.{ts,tsx}"
+    "lint": "tslint --project ./ && prettier -l **\\*.{ts,tsx}",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "tslint",
+      "prettier --list-different"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^22.1.2",
+    "@types/ramda": "^0.25.20",
     "@types/react": "^16.0.37",
     "@types/react-dom": "^16.0.4",
     "@types/react-redux": "^5.0.15",
@@ -26,11 +34,13 @@
     "autoprefixer": "^8.0.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "husky": "^0.14.3",
     "jest": "^22.3.0",
     "jest-css-modules": "^1.1.0",
     "less": "^3.0.0",
+    "lint-staged": "^7.0.0",
     "package": "^1.0.1",
-    "parcel-bundler": "^1.5.1",
+    "parcel-bundler": "^1.6.2",
     "parcel-plugin-typescript": "^0.7.0",
     "postcss-modules": "^1.1.0",
     "prettier": "^1.10.2",
@@ -44,7 +54,9 @@
     "typescript": "^2.7.1"
   },
   "dependencies": {
+    "deep-object-diff": "^1.1.0",
     "normalize.css": "^8.0.0",
+    "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",

@@ -8,7 +8,7 @@ interface Props {}
 const Home: SFC<Props> = ({}) => (
   <div className={styles.home}>
     <p>Hei</p>
-    <Link to="/hello">Hello</Link>
+    <Link to="/sample">Hello</Link>
   </div>
 );
 
